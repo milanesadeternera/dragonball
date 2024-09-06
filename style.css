@@ -3,3 +3,19 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+.image-container {
+    width: 200px; /* Ancho del área visible */
+    height: 200px; /* Alto del área visible */
+    overflow: hidden;
+    position: relative;
+}
+.image{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    object-fit: cover; /* Ajusta el contenido para llenar el contenedor */
+    object-position: center top;
+}
