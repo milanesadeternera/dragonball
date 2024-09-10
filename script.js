@@ -4,8 +4,6 @@ let personajes = [];
 
 document.addEventListener("DOMContentLoaded",async ()=>{
     document.getElementById("buscar").addEventListener("input", buscar);
-
-
     //cargo los personajes
     let fin = false;   
     while(!fin){
@@ -45,15 +43,15 @@ let getJSONData =  async function(url){
     });
 }
 
-function displayData(values, type){
+function displayData(values){
     console.log(values);
     let contenedor=document.getElementById("contenedor");
     data="";
-    //values.forEach(element => {
-    for(let i=0;i<=10 ; i++){
-        console.log("i vale:"+i)
-        element = values[i];
-        data +=`<div class="card col-md-3 mt-3">
+    values.forEach(element => {
+    //for(let i=0;i<=values.length ; i++){
+    //    console.log("i vale:"+i)
+    //    element = values[i];
+        data +=`<div id=${element.id} class="card col-md-3 mt-3">
                         <div class="card-body">
                             <div class="image-container img-thumbnail mb-1">
                                 <img class="image" src=${element.image}></image>
@@ -62,19 +60,48 @@ function displayData(values, type){
                             <p class="card-text descripcion">${element.description}</p>
                         </div>
                     </div>`
-    }
+    //}
 
-    //});
+    });
     contenedor.innerHTML=data;
 }
 
+function createHtml(values){
+    console.log(values);
+    data="";
+    values.forEach(element => {
+        data +=`<div id=${element.id} class="card col-md-3 mt-3">
+                    <div class="card-body">
+                        <div class="image-container img-thumbnail mb-1">
+                            <img class="image" src=${element.image}></image>
+                        </div>
+                        <h4 class="card-title fw-bold">${element.name}</h4>
+                        <p class="card-text descripcion">${element.description}</p>
+                    </div>
+                </div>`
+    //}
+
+    });
+    return data;
+}
+
+//Funcion buscar personaje
 function buscar(){
     let patron = document.getElementById("buscar").value;
 
     //Busco nombre de personaje
-    let match = personajes.filter(personaje => !personaje.name.toLocaleLowerCase().search(patron.toLocaleLowerCase()))
+    let match = personajes.filter(personaje => !personaje.name.toLocaleLowerCase().search(patron.toLocaleLowerCase())).map(personaje => personaje.id);
+    let elementos = document.getElementsByClassName("card");
+    for(let elemento of elementos){
+        if(!match.includes(parseInt(elemento.id))){
+            //no esta en el match
+            elemento.style.display="none";
+        }else{
+            elemento.style.display="";
+        }
+    }
 
     //console.log(match)
-    displayData(match, "filter");
+    //displayData(match, "filter");
 
 }
