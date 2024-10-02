@@ -1,3 +1,4 @@
+
 .descripcion{
     overflow: hidden;
     white-space: nowrap;
@@ -8,6 +9,7 @@
     height: 200px; /* Alto del área visible */
     overflow: hidden;
     position: relative;
+    margin: 0 auto;
 }
 .image{
     width: 100%;
@@ -18,4 +20,16 @@
     transform: translateX(-50%);
     object-fit: cover; /* Ajusta el contenido para llenar el contenedor */
     object-position: center top;
+}
+.detailImg{
+    height: 400px;
+    width: auto;
+}
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+
+}
+.list-group-item > p{
+    margin-bottom: 0px;
 }
